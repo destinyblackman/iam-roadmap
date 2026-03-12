@@ -1,64 +1,277 @@
 import { useState, useEffect } from "react";
 
-const STORAGE_KEY = "destiny_iam_progress";
+const STORAGE_KEY = "destiny_iam_progress_v4";
 
 const phases = [
   {
-    id: 1, label: "PHASE 1", title: "Foundation", weeks: "Weeks 1–4", month: "Month 1", color: "#2E74B5",
-    certs: ["ISC2 CC — Pass Week 2", "Security+ Study Begins"],
-    projects: ["Project 1: RBAC in Entra ID", "Project 2: Access Review Report"],
-    awareness: ["ICAM / FICAM Terminology (2 hrs)"],
-    apply: "Update LinkedIn + Resume Now",
-    milestones: ["Register ISC2 CC at isc2.org","Bookmark Professor Messer","Book Security+ exam date","Read 15 ClearanceJobs postings","Scoring 65%+ on practice exams by Wk 4"],
+    id: 1,
+    label: "PHASE 1",
+    title: "ISC2 CC + Okta Foundation",
+    weeks: "Weeks 1–2",
+    month: "March 2026",
+    color: "#2E74B5",
+    deadline: null,
+    certs: ["ISC2 CC — Pass by end of Week 2", "Okta Fundamentals Learning Path — Begin Day 1"],
+    projects: ["Project 1: Okta Identity Foundation Lab"],
+    awareness: ["DoD ICAM + FICAM Terminology Reading (2 hrs) — Day 1"],
+    apply: "Update LinkedIn headline and resume now — do not wait.",
+    milestones: [
+      "Day 1: Enroll in ISC2 CC at isc2.org — start Module 1 immediately",
+      "Day 1: Activate Okta grant — complete Okta Fundamentals Unit 1 (Org Setup)",
+      "Day 1: Read DoD ICAM overview and FICAM architecture — 2 hrs total",
+      "Day 3: ISC2 CC Modules 2–3 complete (Business Continuity, Access Controls)",
+      "Day 3: Okta Fundamentals Units 2–3 complete (Users, Groups, Directory Integration)",
+      "Day 5: Project 1 — Okta org directory built, departments and groups configured",
+      "Day 6: ISC2 CC Modules 4–5 complete (Network Security, Security Operations)",
+      "Day 6: Okta Fundamentals Units 4–5 complete (Authentication Policies, MFA)",
+      "Day 8: Project 1 — MFA policies enforced, password policy configured, design doc drafted",
+      "Day 9: ISC2 CC full practice exam — score 80%+ on two consecutive attempts",
+      "ISC2 CC EXAM PASSED — Week 2",
+      "Week 2: Project 1 — design document complete, all screenshots taken, write-up done",
+    ],
     hours: "~16.5 hrs/week",
   },
   {
-    id: 2, label: "PHASE 2", title: "Security+ & Core Projects", weeks: "Weeks 5–9", month: "Month 2", color: "#1E6B3C",
-    certs: ["Security+ — Pass Week 7 or 8"],
-    projects: ["Project 3: IAM Policy & SOP Suite", "Project 4: Conditional Access & MFA", "AD Mini-Lab (TryHackMe)"],
-    awareness: ["NIST SP 800-63 Overview (3–4 hrs)"],
-    apply: "SOFT LAUNCH — Apply immediately after Security+ passes",
-    milestones: ["Security+ passed — update resume same day","NIST SP 800-63 executive summaries read","Project 3 policy suite complete","Project 4 Conditional Access complete","TryHackMe AD Basics room complete","ClearanceJobs profile active","5–10 applications submitted"],
+    id: 2,
+    label: "PHASE 2",
+    title: "Okta Professional + Lifecycle Automation",
+    weeks: "Weeks 3–7",
+    month: "April–Early May 2026",
+    color: "#0D6B74",
+    deadline: "⚠️ Okta Professional — Hard Deadline May 10",
+    certs: ["Okta Professional — Sit by Week 7 (May 10 hard deadline)", "Security+ Study — Begins Week 3"],
+    projects: ["Project 2: User Lifecycle Automation with Okta Workflows"],
+    awareness: ["NIST SP 800-63 Executive Summaries (800-63A, B, C) — Week 6"],
+    apply: "SOFT LAUNCH — Apply immediately after Okta Professional passes. ISC2 CC + Okta Professional + Active Secret Clearance is a competitive entry package.",
+    milestones: [
+      "Week 3: Okta Professional learning path Units 1–3 complete (Lifecycle Management, Provisioning, App Integration)",
+      "Week 3: Security+ study started — Professor Messer Threats and Attacks domain begun",
+      "Week 3: Project 2 — new hire provisioning workflow built in Okta Workflows, tested end-to-end",
+      "Week 4: Okta Professional learning path Units 4–6 complete (SSO, SAML, Access Policies)",
+      "Week 4: Project 2 — role change mid-lifecycle workflow built and tested",
+      "Week 5: Okta Professional learning path Units 7–9 complete (Reporting, Troubleshooting, API)",
+      "Week 5: Project 2 — offboarding workflow built, account deactivation and app revocation tested",
+      "Week 6: All Okta learning path content complete — practice and review in your Okta org",
+      "Week 6: NIST SP 800-63 executive summaries read (800-63A, B, and C)",
+      "Week 6: Project 2 — all three workflows documented with screenshots and business rule explanations",
+      "Week 7: Okta Professional practice assessment — score 75%+",
+      "OKTA PROFESSIONAL EXAM PASSED — by May 10",
+      "Week 7: Security+ — first full Jason Dion timed practice exam, baseline score recorded",
+    ],
     hours: "~16.5 hrs/week",
   },
   {
-    id: 3, label: "PHASE 3", title: "SC-300 & GRC Capstone", weeks: "Weeks 10–14", month: "Month 3", color: "#7B5800",
-    certs: ["AZ-900 Material Only (no exam)", "SC-300 Study Begins"],
-    projects: ["Project 5: NIST 800-53 Gap Assessment + POA&M", "Project 6: Okta SSO Lab Begins"],
-    awareness: ["SailPoint University Fundamentals (3–4 hrs)"],
-    apply: "FULL LAUNCH — SC-300 in progress, projects to discuss in interviews",
-    milestones: ["AZ-900 Microsoft Learn path complete","SailPoint Fundamentals complete","SC-300 Domains 1 & 2 done","Project 5 Gap Assessment + POA&M complete","Project 6 Okta lab underway","10–15 total applications active"],
+    id: 3,
+    label: "PHASE 3",
+    title: "Security+ Exam + SSO Integration Project",
+    weeks: "Weeks 8–11",
+    month: "May–June 2026",
+    color: "#1E6B3C",
+    deadline: null,
+    certs: ["Security+ — Pass Week 10 or 11", "Okta Admin — Path activated, Units 1–3 complete"],
+    projects: ["Project 3: SAML + OIDC SSO App Integration"],
+    awareness: ["SailPoint University Identity Security Fundamentals (3–4 hrs) — Week 11"],
+    apply: "FULL LAUNCH — Security+ passed. ISC2 CC + Okta Professional + Security+ + Active Secret Clearance. Apply aggressively on ClearanceJobs, LinkedIn, and USAJobs.",
+    milestones: [
+      "Week 8: Security+ — review two weakest domains, rebuild Anki deck for those topics",
+      "Week 8: Security+ — Jason Dion practice exam, score 75%+",
+      "Week 8: Okta Administrator cert — activate second grant window, begin Administrator learning path Units 1–3",
+      "Week 8: Project 3 — first SAML app integration configured in Okta, login flow tested",
+      "Week 9: Security+ — Jason Dion practice exam, score 78%+",
+      "Week 9: Project 3 — OIDC app integration configured, tested, and compared to SAML flow",
+      "Week 9: Project 3 — SAML assertion captured and attribute mapping documented",
+      "Week 10: Security+ — third practice exam, score 80%+ — book exam immediately",
+      "Week 10: Project 3 — troubleshooting runbook written (5 most common SAML/OIDC errors)",
+      "SECURITY+ EXAM PASSED — Week 10 or 11",
+      "Week 11: Project 3 — full write-up complete, GitHub repo created with all documentation",
+      "Week 11: Okta Administrator cert — learning path Units 4–6 complete (Advanced Policies, Hooks, Workflows)",
+      "Week 11: SailPoint University Fundamentals complete",
+      "Week 11: Resume and LinkedIn updated same day Security+ posts",
+    ],
     hours: "~16.5 hrs/week",
   },
   {
-    id: 4, label: "PHASE 4", title: "Final Exams & Portfolio", weeks: "Weeks 15–18", month: "Month 4", color: "#4B2D8A",
-    certs: ["SC-300 Exam — Pass Week 15/16", "Okta Professional Exam — Pass Week 17", "CyberArk Trustee (Awareness)"],
-    projects: ["Project 6: Okta Lab Complete", "Portfolio Assembly & Polish", "Portfolio Exported as PDF"],
-    awareness: ["CyberArk Trustee (2–3 hrs)"],
-    apply: "POWER POSITION — All creds done, full portfolio ready, apply everywhere",
-    milestones: ["SC-300 passed — resume updated same day","Okta Professional passed","CyberArk Trustee complete","All 6 projects documented","Portfolio PDF finalized","Resume updated with all credentials","Ready to apply to any IAM role"],
+    id: 4,
+    label: "PHASE 4",
+    title: "SC-300 + Okta Admin + Core IAM Projects",
+    weeks: "Weeks 12–16",
+    month: "June–July 2026",
+    color: "#7B5800",
+    deadline: null,
+    certs: ["SC-300 — Study and Exam by Week 16", "Okta Admin — Exam within 90-day window"],
+    projects: [
+      "AD Mini-Lab (TryHackMe + Hybrid Architecture Doc) — Week 12",
+      "Project 4: Entra ID RBAC Design + Access Review",
+      "Project 5: Conditional Access + Zero Trust Policy Lab",
+      "Project 6: IAM Policy + SOP Suite (DoD-Aligned)",
+      "Project 7: NIST 800-53 AC + IA Gap Assessment + POA&M",
+      "Project 8: PowerShell + Microsoft Graph API Automation",
+    ],
+    awareness: ["CyberArk Trustee — Week 15 Saturday block", "CyberArk PAM Demo Certified — Week 15 (verify at training.cyberark.com first)"],
+    apply: "POWER POSITION — SC-300 in progress, Okta Admin done, 6+ projects complete. Negotiate any pending offers from strength.",
+    milestones: [
+      "Week 12: TryHackMe AD Basics room complete — all tasks done, notes written",
+      "Week 12: Hybrid identity architecture diagram complete — Okta + Entra ID coexistence in DoD context",
+      "Week 12: SC-300 Domain 1 complete — Implement Identities in Entra ID",
+      "Week 12: Okta Administrator cert — learning path Units 7–9 complete, practice assessment begun",
+      "Week 13: SC-300 Domain 2 complete — Implement Authentication and Access Management",
+      "Week 13: Project 4 — RBAC matrix designed, roles assigned in Entra ID with least-privilege justification",
+      "Week 13: Project 4 — access review complete, findings documented, remediation report written",
+      "Week 13: Okta Administrator cert — practice assessment score 75%+, exam booked at Pearson VUE",
+      "Week 14: SC-300 Domain 3 complete — Implement Access Management for Apps",
+      "Week 14: Project 5 — Conditional Access policy set built, MFA enforced, legacy auth blocked",
+      "Week 14: Project 5 — Zero Trust alignment document written, each policy mapped to NIST 800-207",
+      "Week 14: Project 6 — IAM Policy document drafted (access request procedure, approval chain)",
+      "OKTA ADMIN EXAM PASSED — Week 14 or 15",
+      "Week 15: SC-300 Domain 4 complete — Plan and Implement Identity Governance",
+      "Week 15: Project 6 — SOPs drafted (onboarding, offboarding, access change) + Draw.io diagrams",
+      "Week 15: Project 7 — gap assessment complete, AC and IA controls rated and risk-scored",
+      "Week 15: CyberArk Trustee complete — Pearson VUE test center",
+      "Week 15: CyberArk PAM Demo Certified complete (if verified as valid credential)",
+      "Week 16: Project 7 — POA&M complete with owners, milestones, and remediation dates",
+      "Week 16: Project 8 — PowerShell script 1: export all Entra ID users and role assignments to CSV",
+      "Week 16: Project 8 — PowerShell script 2: disable accounts inactive 90+ days",
+      "Week 16: Project 8 — PowerShell script 3: report all users with privileged roles",
+      "Week 16: Project 8 — PowerShell script 4: detect accounts with privilege changes in last 30 days",
+      "Week 16: Project 8 — all scripts pushed to public GitHub repo with comments and README",
+      "Week 16: MeasureUp SC-300 practice test — score 75%+",
+      "Week 16: MeasureUp SC-300 practice test — score 80%+ on two consecutive — book exam",
+      "SC-300 EXAM PASSED — Week 16",
+    ],
+    hours: "~16.5 hrs/week",
+  },
+  {
+    id: 5,
+    label: "PHASE 5",
+    title: "Portfolio Assembly + Full Application Push",
+    weeks: "Weeks 17–18",
+    month: "July 2026",
+    color: "#4B2D8A",
+    deadline: null,
+    certs: ["All credentials complete — ISC2 CC, Okta Pro, Okta Admin, Security+, SC-300, CyberArk Trustee"],
+    projects: ["Portfolio Assembly — All 8 Projects", "Portfolio Exported as PDF", "Professional Bridge Narrative Written"],
+    awareness: ["Final resume polish — IAM language throughout, DSCA audit work reframed"],
+    apply: "FULL POWER — 6 credentials, 8 projects, Active Secret Clearance, full portfolio. Apply everywhere. Negotiate hard. Target $90k–$120k.",
+    milestones: [
+      "Week 17: Projects 1 and 2 portfolio pages complete — problem, approach, screenshots, lessons learned",
+      "Week 17: Project 3 portfolio page complete — SAML vs OIDC comparison, troubleshooting runbook attached",
+      "Week 17: Projects 4 and 5 portfolio pages complete — all Entra ID work documented with screenshots",
+      "Week 17: Project 6 portfolio page complete — all policy and SOP documents attached",
+      "Week 17: Professional Bridge narrative written — 2 paragraphs connecting EA + DSCA audit work to IAM, mentions SailPoint and CyberArk awareness",
+      "Week 17: Message sent to 5 contacts at Seneca, Deloitte, or AIS — letting them know you are making a move",
+      "Week 18: Projects 7 and 8 portfolio pages complete — POA&M attached, GitHub repo linked",
+      "Week 18: Hybrid identity architecture diagram added to portfolio as standalone appendix",
+      "Week 18: Portfolio formatted — cover page, table of contents, consistent layout across all 8 projects",
+      "Week 18: Resume finalized — all 6 credentials listed, Microsoft Graph API called out explicitly in skills",
+      "Week 18: LinkedIn updated — all credentials added, About section rewritten with IAM focus",
+      "Week 18: Portfolio exported as PDF and test-opened to confirm clean formatting",
+      "Week 18: 5 targeted applications submitted with portfolio attached",
+    ],
     hours: "~16.5 hrs/week",
   },
 ];
 
 const allProjects = [
-  { num: "01", name: "RBAC Implementation", platform: "Azure Entra ID", weeks: "Wk 1–3", phase: 1, color: "#2E74B5", skills: "Least Privilege · Role Design · Access Matrix" },
-  { num: "02", name: "Access Review Report", platform: "Entra ID + Word", weeks: "Wk 3–5", phase: 1, color: "#2E74B5", skills: "User Lifecycle · Access Certification · Audit Docs" },
-  { num: "03", name: "IAM Policy & SOP Suite", platform: "Word + Draw.io", weeks: "Wk 5–7", phase: 2, color: "#1E6B3C", skills: "Policy Writing · SOPs · Federal Standards" },
-  { num: "04", name: "Conditional Access & MFA", platform: "Azure Entra ID", weeks: "Wk 7–9", phase: 2, color: "#1E6B3C", skills: "Zero Trust · MFA · DoD Mandate Alignment" },
-  { num: "AD", name: "Active Directory Mini-Lab", platform: "TryHackMe", weeks: "Wk 9", phase: 2, color: "#0D6B74", skills: "On-Prem AD · Hybrid Identity · Domain Concepts" },
-  { num: "05", name: "NIST 800-53 Gap Assessment", platform: "NIST SP 800-53 + Word", weeks: "Wk 10–13", phase: 3, color: "#7B5800", skills: "GRC · Risk Rating · POA&M · CMMC Readiness" },
-  { num: "06", name: "Okta SSO & Lifecycle Lab", platform: "Okta Developer Tenant", weeks: "Wk 13–16", phase: 4, color: "#4B2D8A", skills: "SSO · SAML · Lifecycle Management · Platform Breadth" },
+  {
+    num: "01",
+    name: "Okta Identity Foundation Lab",
+    platform: "Okta Org (Grant Tenant)",
+    weeks: "Wk 1–2",
+    phase: 1,
+    color: "#2E74B5",
+    skills: "Directory Structure · Group Management · MFA Enforcement · Password Policy · Platform Administration",
+    desc: "Build your Okta org from scratch as you complete the Okta Fundamentals learning path. Configure a directory structure for a fictional DoD contractor org — departments, user groups by role and function, profile attributes. Enforce MFA enrollment policies and a compliant password policy. Set up at least one app integration. Document every design decision in a written configuration overview explaining what you built and why. This project runs in parallel with your learning — each unit you study, you immediately implement in your org. Deliverable: configured Okta org + design document with screenshots.",
+  },
+  {
+    num: "02",
+    name: "User Lifecycle Automation — Okta Workflows",
+    platform: "Okta Workflows",
+    weeks: "Wk 3–6",
+    phase: 2,
+    color: "#0D6B74",
+    skills: "Joiner-Mover-Leaver · Automated Provisioning · Deprovisioning · Access Governance · No-Code Automation",
+    desc: "Build three automated lifecycle workflows using Okta Workflows — the no-code automation engine inside your Okta org. Workflow 1: new hire provisioning that automatically assigns groups and app access based on department attribute. Workflow 2: role change that modifies access mid-lifecycle when a user's title or department changes. Workflow 3: offboarding that triggers on manager request, deactivates the account, revokes all app sessions, and logs the event. Document each workflow with a flow diagram, screenshots of the configuration, and a written explanation of the business rule it enforces and what could go wrong without it. Deliverable: 3 working Workflows + documentation package.",
+  },
+  {
+    num: "03",
+    name: "SAML + OIDC SSO App Integration",
+    platform: "Okta + SAML/OIDC Test Apps",
+    weeks: "Wk 8–11",
+    phase: 3,
+    color: "#1E6B3C",
+    skills: "SAML 2.0 · OIDC · OAuth 2.0 · Attribute Mapping · Federation · SSO Troubleshooting",
+    desc: "Configure SSO integrations for two applications in your Okta org — one using SAML 2.0 and one using OIDC/OAuth 2.0. For the SAML integration: capture the SAML assertion, document the full attribute mapping, and test the SP-initiated and IdP-initiated login flows. For the OIDC integration: configure the authorization code flow, document the token structure, and test login. Write a side-by-side comparison of SAML vs OIDC covering when you would choose each. Build a troubleshooting runbook covering the five most common errors for each protocol. Push all documentation to a public GitHub repo. Deliverable: two working SSO integrations + comparison doc + troubleshooting runbook + GitHub repo.",
+  },
+  {
+    num: "AD",
+    name: "Hybrid Identity Architecture Lab",
+    platform: "TryHackMe + Draw.io",
+    weeks: "Wk 12",
+    phase: 4,
+    color: "#7B5800",
+    skills: "On-Prem AD · Hybrid Identity · Entra ID Connect · Domain Architecture · Federation Design",
+    desc: "Complete the TryHackMe Active Directory Basics room to build foundational on-prem AD knowledge — domain structure, OUs, GPOs, user and group management. Then produce a professional hybrid identity architecture diagram using Draw.io showing how on-prem AD, Entra ID, and Okta would coexist in a fictional DoD contractor environment — which system handles what, how they federate, what the sync relationships are, and where authentication decisions are made. Write a one-page narrative explaining the design choices. This is the kind of systems-level thinking that separates IAM Engineers from access management workers. Deliverable: TryHackMe completion + Draw.io architecture diagram + written narrative.",
+  },
+  {
+    num: "04",
+    name: "Entra ID RBAC Design + Access Review",
+    platform: "Azure Entra ID",
+    weeks: "Wk 13",
+    phase: 4,
+    color: "#7B5800",
+    skills: "RBAC · Least Privilege · Role Assignment · Access Certification · Privilege Creep · Audit Reporting",
+    desc: "Now that you have SC-300 Domains 1 and 2 under your belt, design and implement a full RBAC structure in Entra ID for a fictional DoD contractor org with three departments and two privilege tiers. Assign roles using least-privilege principles, document every assignment with a business justification. Then immediately conduct a simulated quarterly access review — evaluate all assignments against current business need, flag over-provisioned accounts and privilege creep, and produce a formal access certification report with findings, risk ratings, and remediation actions. This is the most common audit deliverable an IAM Analyst produces. Deliverable: RBAC design document + access review report with findings and remediation.",
+  },
+  {
+    num: "05",
+    name: "Conditional Access + Zero Trust Policy Lab",
+    platform: "Azure Entra ID",
+    weeks: "Wk 14",
+    phase: 4,
+    color: "#7B5800",
+    skills: "Conditional Access · Zero Trust · MFA · Device Compliance · Risk-Based Access · NIST 800-207",
+    desc: "Build a production-grade Conditional Access policy set in Entra ID: enforce MFA for all users, block legacy authentication protocols, require compliant device for access to sensitive applications, and apply location-based restrictions. Test each policy with a test user account and document the results. Then write a Zero Trust alignment document that maps each policy to a specific principle from NIST SP 800-207 (Zero Trust Architecture) and the DoD Zero Trust Strategy. This elevates the project from a lab exercise to a strategic compliance document. Deliverable: Conditional Access policy screenshots + test results + Zero Trust alignment document.",
+  },
+  {
+    num: "06",
+    name: "IAM Policy + SOP Suite (DoD-Aligned)",
+    platform: "Word + Draw.io",
+    weeks: "Wk 14–15",
+    phase: 4,
+    color: "#7B5800",
+    skills: "Policy Writing · SOPs · NIST 800-63 · FICAM Alignment · Process Documentation · Compliance Writing",
+    desc: "Write a complete IAM policy and procedure suite for a fictional DoD contractor environment. Document 1: Access Management Policy — governing principles, enforcement mechanisms, roles and responsibilities, exceptions process. Document 2: User Onboarding and Offboarding SOP — step-by-step procedures aligned to FICAM and NIST 800-63 identity proofing requirements. Document 3: Access Change Request SOP — request intake, approval chain, implementation, and audit trail requirements. Build a Draw.io process flow diagram for each SOP visualizing the full workflow. Use ICAM and FICAM terminology throughout — this is the language DoD hiring managers recognize. Deliverable: 3 policy/SOP documents + 3 process flow diagrams.",
+  },
+  {
+    num: "07",
+    name: "NIST 800-53 AC + IA Gap Assessment + POA&M",
+    platform: "Excel + Word",
+    weeks: "Wk 15–16",
+    phase: 4,
+    color: "#7B5800",
+    skills: "GRC · NIST 800-53 · Risk Rating · POA&M · AC Controls · IA Controls · CMMC · FedRAMP · Audit Support",
+    desc: "Perform a formal gap assessment against two NIST SP 800-53 Rev 5 control families — AC (Access Control) and IA (Identification and Authentication) — for a simulated system. Rate each control: Implemented, Partially Implemented, or Not Implemented. Risk-score all gaps using a High / Medium / Low framework. Build a formal Plan of Action and Milestones (POA&M) using the FedRAMP template — every gap gets an owner, a milestone, a remediation action, and a target completion date. Write a one-page executive summary for a CISO audience explaining the overall risk posture. This project maps directly to your DSCA audit experience and will be your strongest interview talking point. Deliverable: gap assessment Excel workbook + POA&M document + executive summary.",
+  },
+  {
+    num: "08",
+    name: "PowerShell + Microsoft Graph API Automation",
+    platform: "PowerShell + Microsoft Graph API + GitHub",
+    weeks: "Wk 16",
+    phase: 4,
+    color: "#7B5800",
+    skills: "PowerShell · Microsoft Graph API · Automation · Access Reporting · Incident Detection · Scripting · GitHub",
+    desc: "Write four practical PowerShell scripts that use the Microsoft Graph API to automate real IAM tasks. Script 1: export all Entra ID users with their role assignments and last sign-in date to a formatted CSV — the most common access review prep task. Script 2: identify and disable user accounts that have not logged in within 90 days — automated dormant account remediation. Script 3: generate a report of all users assigned to privileged roles (Global Admin, Privileged Role Admin, etc.) — a standard audit deliverable. Script 4: detect accounts that received new privileged role assignments in the last 30 days — simulated insider threat and privilege escalation detection. Comment every script thoroughly explaining what each block does and why. Push all four scripts to a public GitHub repo with a README explaining the business use case for each. Deliverable: 4 working scripts + GitHub repo with README.",
+  },
 ];
 
 const weeklySchedule = [
-  { day: "MON", study: "60 min — Video lessons", project: "30 min — Project work", total: "90 min" },
-  { day: "TUE", study: "60 min — Chapter reading", project: "30 min — Project work", total: "90 min" },
-  { day: "WED", study: "30 min — Anki review", project: "90 min — Lab session", total: "120 min" },
-  { day: "THU", study: "60 min — Video lessons", project: "30 min — Portfolio docs", total: "90 min" },
-  { day: "FRI", study: "45 min — Practice quiz", project: "45 min — Portfolio writing", total: "90 min" },
-  { day: "SAT", study: "90 min — Full practice exam + BREAK", project: "2 hrs — Project work", total: "3.5 hrs" },
-  { day: "SUN", study: "30 min — Light review (optional)", project: "2 hrs — Project / Portfolio", total: "2.5 hrs" },
+  { day: "MON", study: "60 min — Video lessons, follow syllabus", project: "30 min — Project work", total: "90 min" },
+  { day: "TUE", study: "60 min — Chapter reading and notes", project: "30 min — Project work", total: "90 min" },
+  { day: "WED", study: "30 min — Anki review or light reading", project: "90 min — Hands-on lab session", total: "120 min" },
+  { day: "THU", study: "60 min — Video lessons continued", project: "30 min — Portfolio documentation", total: "90 min" },
+  { day: "FRI", study: "45 min — 20-question quiz + Anki review", project: "45 min — Portfolio writing", total: "90 min" },
+  { day: "SAT", study: "90 min — Full timed practice exam then BREAK", project: "2 hrs — Project work (afternoon)", total: "3.5 hrs" },
+  { day: "SUN", study: "30 min — Light review (optional, afternoon only)", project: "2 hrs — Project or portfolio", total: "2.5 hrs" },
 ];
 
 const resources = [
@@ -66,50 +279,55 @@ const resources = [
     category: "Certifications & Study",
     color: "#2E74B5",
     items: [
-      { name: "ISC2 CC — Free Course & Exam", url: "https://www.isc2.org/Certifications/CC", desc: "Register, enroll in free self-paced course, schedule exam. Do this Day 1.", phase: "Week 2", cost: "Free", type: "cert" },
-      { name: "Professor Messer — Security+ Course", url: "https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-comptia-security-plus-course/", desc: "Free full video course. Your primary Security+ study resource.", phase: "Weeks 2–8", cost: "Free", type: "cert" },
-      { name: "Jason Dion — Security+ Practice Exams (Udemy)", url: "https://www.udemy.com/course/comptia-security-sy0-601-practice-exams/", desc: "Buy during a Udemy sale (~$15). Use for Saturday timed practice exams.", phase: "Weeks 3–8", cost: "~$15", type: "cert" },
-      { name: "CompTIA Security+ Exam Registration", url: "https://www.pearsonvue.com/us/en/comptia.html", desc: "Book your exam date here. Online proctored available — test from home.", phase: "Week 7–8", cost: "$370", type: "cert" },
-      { name: "Microsoft Learn — AZ-900 Path", url: "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/", desc: "Free full learning path. Study only in Week 10 — no exam needed.", phase: "Week 10", cost: "Free", type: "cert" },
-      { name: "Microsoft Learn — SC-300 Path", url: "https://learn.microsoft.com/en-us/credentials/certifications/identity-and-access-administrator/", desc: "Free official SC-300 learning path. Your primary SC-300 study resource.", phase: "Weeks 11–15", cost: "Free", type: "cert" },
-      { name: "John Savill — SC-300 Study Cram (YouTube)", url: "https://www.youtube.com/results?search_query=john+savill+sc-300", desc: "Free YouTube cram. Use in the final week before the SC-300 exam.", phase: "Week 15", cost: "Free", type: "cert" },
-      { name: "MeasureUp — SC-300 Practice Tests", url: "https://www.measureup.com/microsoft-practice-test-sc-300.html", desc: "Closest format to the real SC-300 exam. Use in the final 2 weeks of prep.", phase: "Weeks 14–15", cost: "~$99", type: "cert" },
-      { name: "SC-300 Exam Registration (Pearson VUE)", url: "https://www.pearsonvue.com/us/en/microsoft.html", desc: "Book SC-300 exam here when scoring 80%+ on MeasureUp.", phase: "Week 15–16", cost: "$165", type: "cert" },
-      { name: "Okta Training — Fundamentals & Admin Paths", url: "https://training.okta.com", desc: "Free Okta learning paths. Complete Okta Fundamentals and Administration paths for exam prep.", phase: "Weeks 13–17", cost: "Free", type: "cert" },
-      { name: "Okta Professional Exam Registration", url: "https://www.webassessor.com/okta", desc: "Book Okta Professional exam here after completing training paths.", phase: "Week 17", cost: "$150", type: "cert" },
-      { name: "CyberArk Trustee Certification", url: "https://www.cyberark.com/why-cyberark/education-and-training/", desc: "Free PAM awareness certification. 2–3 hours total. Enough for entry-level interviews.", phase: "Week 17", cost: "Free", type: "cert" },
+      { name: "ISC2 CC — Free Course & Exam", url: "https://www.isc2.org/Certifications/CC", desc: "Register Day 1. Free self-paced course and free exam. Complete in Weeks 1–2.", phase: "Week 1–2", cost: "Free", type: "cert" },
+      { name: "Okta Training — Grant Program Learning Paths", url: "https://training.okta.com", desc: "Activate your grant Day 1. Complete Okta Fundamentals then Administration paths. 60-day deadline for Professional voucher — May 10.", phase: "Weeks 1–7", cost: "Free (Grant)", type: "cert" },
+      { name: "Okta Professional Exam Registration", url: "https://www.webassessor.com/okta", desc: "Book and sit exam by May 10 (Week 7). Use your grant voucher — do not pay out of pocket.", phase: "By Week 7", cost: "Free (Voucher)", type: "cert" },
+      { name: "Okta Admin Exam Registration", url: "https://www.webassessor.com/okta", desc: "Sit within 90 days after Okta Professional passes. Second free voucher from grant program.", phase: "Week 14–15", cost: "Free (Voucher)", type: "cert" },
+      { name: "Professor Messer — Security+ SY0-701 Course", url: "https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-comptia-security-plus-course/", desc: "Free full video course. Begin Week 3. Primary Security+ study resource.", phase: "Weeks 3–10", cost: "Free", type: "cert" },
+      { name: "Jason Dion — Security+ Practice Exams (Udemy)", url: "https://www.udemy.com/course/comptia-security-sy0-601-practice-exams/", desc: "Buy during a Udemy sale (~$15). Use for all Saturday timed practice exams.", phase: "Weeks 5–10", cost: "~$15", type: "cert" },
+      { name: "CompTIA Security+ Exam Registration", url: "https://www.pearsonvue.com/us/en/comptia.html", desc: "Book your exam when scoring 80%+ on three consecutive Dion exams. Online proctored available.", phase: "Week 10–11", cost: "$370", type: "cert" },
+      { name: "Microsoft Learn — AZ-900 Path (Study Only)", url: "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/", desc: "Free learning path. Study only — no exam needed. Complete before SC-300 begins.", phase: "Week 11", cost: "Free", type: "cert" },
+      { name: "Microsoft Learn — SC-300 Path", url: "https://learn.microsoft.com/en-us/credentials/certifications/identity-and-access-administrator/", desc: "Free official SC-300 learning path. Primary SC-300 study resource.", phase: "Weeks 12–16", cost: "Free", type: "cert" },
+      { name: "John Savill — SC-300 Study Cram (YouTube)", url: "https://www.youtube.com/results?search_query=john+savill+sc-300", desc: "Free YouTube cram session. Use in the final week before the SC-300 exam.", phase: "Week 15–16", cost: "Free", type: "cert" },
+      { name: "MeasureUp — SC-300 Practice Tests", url: "https://www.measureup.com/microsoft-practice-test-sc-300.html", desc: "Closest format to the real SC-300 exam. Use in the final 2 weeks of prep.", phase: "Weeks 15–16", cost: "~$99", type: "cert" },
+      { name: "SC-300 Exam Registration", url: "https://www.pearsonvue.com/us/en/microsoft.html", desc: "Book SC-300 exam when scoring 80%+ on two consecutive MeasureUp tests.", phase: "Week 16", cost: "$165", type: "cert" },
+      { name: "CyberArk Trustee Certification", url: "https://www.cyberark.com/why-cyberark/education-and-training/", desc: "PAM concepts and privileged access risk awareness. Now requires in-person Pearson VUE testing center. Book in advance.", phase: "Week 15", cost: "Free*", type: "cert" },
+      { name: "CyberArk PAM Demo Certified", url: "https://training.cyberark.com", desc: "Hands-on CyberArk product walkthrough. Verify at training.cyberark.com that this results in a verifiable credential before scheduling. If confirmed, complete same session as Trustee in Week 15. Note: all CyberArk exams now require in-person Pearson VUE testing center.", phase: "Week 15", cost: "Free*", type: "cert" },
     ]
   },
   {
     category: "Awareness & Required Reading",
     color: "#0D6B74",
     items: [
-      { name: "SailPoint University — Identity Security Fundamentals", url: "https://university.sailpoint.com", desc: "Free. Complete the Identity Security Fundamentals learning path. 3–4 hours total.", phase: "Week 10", cost: "Free", type: "awareness" },
-      { name: "NIST SP 800-63 — Digital Identity Guidelines", url: "https://pages.nist.gov/800-63-3/", desc: "Read executive summaries of all 3 volumes: 800-63A (Identity Proofing), 800-63B (Authentication), 800-63C (Federation).", phase: "Week 5", cost: "Free", type: "awareness" },
-      { name: "NIST SP 800-53 Rev 5 — Security & Privacy Controls", url: "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final", desc: "Download and focus on AC (Access Control) control family AC-1 through AC-25 for Project 5.", phase: "Weeks 10–13", cost: "Free", type: "awareness" },
-      { name: "DoD ICAM Reference Design", url: "https://dodcio.defense.gov/Library/", desc: "Read the ICAM overview. 2 hours. Learn the exact DoD identity terminology hiring managers use.", phase: "Week 1", cost: "Free", type: "awareness" },
-      { name: "FICAM Architecture — idmanagement.gov", url: "https://www.idmanagement.gov/ficam/", desc: "Federal identity management framework. Read alongside the DoD ICAM document in Week 1.", phase: "Week 1", cost: "Free", type: "awareness" },
-      { name: "FedRAMP POA&M Template", url: "https://www.fedramp.gov/documents-templates/", desc: "Download and use as your format reference for the Project 5 POA&M deliverable.", phase: "Weeks 10–13", cost: "Free", type: "awareness" },
+      { name: "DoD ICAM Reference Design", url: "https://dodcio.defense.gov/Library/", desc: "Read the ICAM overview — 2 hours. Learn the exact DoD identity terminology. Do this Day 1.", phase: "Day 1", cost: "Free", type: "awareness" },
+      { name: "FICAM Architecture — idmanagement.gov", url: "https://www.idmanagement.gov/ficam/", desc: "Federal identity management framework. Read alongside DoD ICAM on Day 1.", phase: "Day 1", cost: "Free", type: "awareness" },
+      { name: "NIST SP 800-63 — Digital Identity Guidelines", url: "https://pages.nist.gov/800-63-3/", desc: "Read executive summaries of 800-63A (Identity Proofing), 800-63B (Authentication), 800-63C (Federation). Week 6.", phase: "Week 6", cost: "Free", type: "awareness" },
+      { name: "NIST SP 800-207 — Zero Trust Architecture", url: "https://csrc.nist.gov/publications/detail/sp/800-207/final", desc: "Read for Project 5. Maps Conditional Access policies to Zero Trust principles.", phase: "Week 14", cost: "Free", type: "awareness" },
+      { name: "SailPoint University — Identity Security Fundamentals", url: "https://university.sailpoint.com", desc: "Free. Complete Identity Security Fundamentals learning path. 3–4 hours. Week 11.", phase: "Week 11", cost: "Free", type: "awareness" },
+      { name: "NIST SP 800-53 Rev 5 — AC + IA Control Families", url: "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final", desc: "Download and focus on AC (Access Control) and IA (Identification and Authentication) control families for Project 7.", phase: "Week 15–16", cost: "Free", type: "awareness" },
+      { name: "FedRAMP POA&M Template", url: "https://www.fedramp.gov/documents-templates/", desc: "Download and use as your POA&M format template for Project 7.", phase: "Week 15–16", cost: "Free", type: "awareness" },
     ]
   },
   {
     category: "Lab Environments & Tools",
     color: "#1E6B3C",
     items: [
-      { name: "Azure Portal — Free Tier", url: "https://portal.azure.com", desc: "All Entra ID and Azure projects live here. Confirm your free tier account is active before Week 1.", phase: "Week 1+", cost: "Free", type: "lab" },
-      { name: "TryHackMe — Active Directory Basics Room", url: "https://tryhackme.com/room/winadbasics", desc: "Complete this room in Week 9. Fully browser-based — no local Windows Server install needed.", phase: "Week 9", cost: "Free*", type: "lab" },
-      { name: "Okta Developer Tenant", url: "https://developer.okta.com", desc: "Sign up for a free full-featured Okta developer tenant for Project 6. Not a sandbox — full product.", phase: "Week 13+", cost: "Free", type: "lab" },
-      { name: "Draw.io — Process Flow Diagrams", url: "https://draw.io", desc: "Free browser-based diagramming tool. Use for access request workflow diagrams in Projects 3 and 4.", phase: "Weeks 5–9", cost: "Free", type: "lab" },
-      { name: "Anki Flashcard App", url: "https://apps.ankiweb.net", desc: "Free spaced-repetition flashcard app. Use for Security+ acronyms and definitions — review daily.", phase: "Weeks 2–8", cost: "Free", type: "lab" },
+      { name: "Okta Developer Tenant", url: "https://developer.okta.com", desc: "Sign up for a free full-featured Okta developer tenant. Use for Project 3 advanced SSO work if needed alongside your grant org.", phase: "Week 8+", cost: "Free", type: "lab" },
+      { name: "Azure Portal — Free Tier", url: "https://portal.azure.com", desc: "All Entra ID projects live here. Confirm your free tier account is active before Week 12.", phase: "Week 12+", cost: "Free", type: "lab" },
+      { name: "TryHackMe — Active Directory Basics Room", url: "https://tryhackme.com/room/winadbasics", desc: "Complete in Week 12. Browser-based — no local install needed. 6–8 hours.", phase: "Week 12", cost: "Free*", type: "lab" },
+      { name: "Draw.io — Diagrams", url: "https://draw.io", desc: "Free browser-based diagramming. Use for hybrid architecture diagram, SOP process flows, and workflow diagrams.", phase: "Weeks 6–15", cost: "Free", type: "lab" },
+      { name: "Anki Flashcard App", url: "https://apps.ankiweb.net", desc: "Free spaced-repetition flashcards. Use for Security+ acronyms and definitions — review daily.", phase: "Weeks 3–11", cost: "Free", type: "lab" },
+      { name: "GitHub", url: "https://github.com", desc: "Create a public repo for Project 3 documentation and Project 8 PowerShell scripts. Makes your work tangible to hiring managers.", phase: "Week 11+", cost: "Free", type: "lab" },
+      { name: "Microsoft Graph Explorer", url: "https://developer.microsoft.com/en-us/graph/graph-explorer", desc: "Browser-based tool to test Microsoft Graph API queries before writing PowerShell. Use to prototype Project 8 scripts.", phase: "Week 16", cost: "Free", type: "lab" },
     ]
   },
   {
     category: "Job Search",
     color: "#4B2D8A",
     items: [
-      { name: "ClearanceJobs.com", url: "https://www.clearancejobs.com", desc: "Primary job board for cleared candidates. Search: IAM Analyst, ISSO, Access Control Analyst, Identity Analyst. Start reading Week 1, apply Week 8.", phase: "Week 8+", cost: "Free", type: "jobs" },
-      { name: "LinkedIn Jobs", url: "https://www.linkedin.com/jobs", desc: "Update your headline now: Enterprise Architect | IAM | DoD | Active Secret Clearance | Security+ In Progress. Apply from Week 12.", phase: "Week 12+", cost: "Free", type: "jobs" },
-      { name: "USAJobs.gov", url: "https://www.usajobs.gov", desc: "Federal direct hire positions. Slowest process but highest long-term compensation ceiling. Apply from Week 12.", phase: "Week 12+", cost: "Free", type: "jobs" },
+      { name: "ClearanceJobs.com", url: "https://www.clearancejobs.com", desc: "Primary job board. Search: IAM Analyst, Identity Analyst, ISSO, Access Control Analyst. Apply after Okta Professional passes — Week 7.", phase: "Week 7+", cost: "Free", type: "jobs" },
+      { name: "LinkedIn Jobs", url: "https://www.linkedin.com/jobs", desc: "Update your headline now. Expand applications here from Week 11 after Security+ passes.", phase: "Week 11+", cost: "Free", type: "jobs" },
+      { name: "USAJobs.gov", url: "https://www.usajobs.gov", desc: "Federal direct hire. Slowest process but highest long-term compensation ceiling.", phase: "Week 11+", cost: "Free", type: "jobs" },
     ]
   },
 ];
@@ -121,10 +339,14 @@ const buildAllKeys = () => {
     p.projects.forEach((_, i) => { keys[`project_${p.id}_${i}`] = false; });
     p.milestones.forEach((_, i) => { keys[`milestone_${p.id}_${i}`] = false; });
   });
+  allProjects.forEach(p => { keys[`pj_done_${p.num}`] = false; });
   return keys;
 };
 
-const rgbMap = { "#2E74B5": "46,116,181", "#1E6B3C": "30,107,60", "#7B5800": "123,88,0", "#4B2D8A": "75,45,138", "#0D6B74": "13,107,116" };
+const rgbMap = {
+  "#2E74B5": "46,116,181", "#1E6B3C": "30,107,60", "#7B5800": "123,88,0",
+  "#4B2D8A": "75,45,138", "#0D6B74": "13,107,116"
+};
 const rgb = (c) => rgbMap[c] || "46,116,181";
 const typeLabels = { cert: "Certification", awareness: "Reading", lab: "Lab / Tool", jobs: "Job Search" };
 
@@ -148,7 +370,7 @@ const ProgressRing = ({ percent, color, size = 100, label }) => {
         <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={color} strokeWidth={10}
           strokeDasharray={`${dash} ${circ - dash}`} strokeLinecap="round"
           transform={`rotate(-90 ${size/2} ${size/2})`} style={{ transition: "stroke-dasharray 0.6s ease" }} />
-        <text x={size/2} y={size/2 + 6} textAnchor="middle" fill={color} fontSize={15} fontWeight="bold">{percent}%</text>
+        <text x={size/2} y={size/2 + 6} textAnchor="middle" fill={color} fontSize={14} fontWeight="bold">{percent}%</text>
       </svg>
       <div style={{ fontSize: 11, color: "#5a7a99", letterSpacing: "0.08em", textTransform: "uppercase", textAlign: "center" }}>{label}</div>
     </div>
@@ -182,11 +404,14 @@ export default function RoadmapApp() {
   const doneMilestones = Object.entries(checked).filter(([k, v]) => k.startsWith("milestone_") && v).length;
   const doneAll = doneCerts + doneProjects + doneMilestones;
   const pct = (d, t) => t === 0 ? 0 : Math.round((d / t) * 100);
+  const doneProj8 = allProjects.filter(p => checked[`pj_done_${p.num}`]).length;
 
   const phaseProgress = (id) => {
     const p = phases.find(x => x.id === id);
     const total = p.certs.length + p.projects.length + p.milestones.length;
-    const done = p.certs.filter((_, i) => checked[`cert_${id}_${i}`]).length + p.projects.filter((_, i) => checked[`project_${id}_${i}`]).length + p.milestones.filter((_, i) => checked[`milestone_${id}_${i}`]).length;
+    const done = p.certs.filter((_, i) => checked[`cert_${id}_${i}`]).length
+      + p.projects.filter((_, i) => checked[`project_${id}_${i}`]).length
+      + p.milestones.filter((_, i) => checked[`milestone_${id}_${i}`]).length;
     return { done, total, pct: pct(done, total) };
   };
 
@@ -208,19 +433,29 @@ export default function RoadmapApp() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 16, marginBottom: 18 }}>
             <div>
-              <div style={{ fontSize: 11, letterSpacing: "0.3em", color: "#7aaddb", marginBottom: 8, textTransform: "uppercase" }}>Career Transition Roadmap</div>
+              <div style={{ fontSize: 11, letterSpacing: "0.3em", color: "#7aaddb", marginBottom: 8, textTransform: "uppercase" }}>Career Transition Roadmap — Updated March 2026</div>
               <h1 style={{ fontSize: 30, fontWeight: "normal", margin: "0 0 5px", color: "#fff" }}>Destiny Blackman</h1>
-              <div style={{ fontSize: 15, color: "#a8c4e0", marginBottom: 3 }}>Enterprise Architect → IAM Analyst</div>
-              <div style={{ fontSize: 12, color: "#7aaddb" }}>Active Secret Clearance · DoD Background · 18-Week Sprint</div>
+              <div style={{ fontSize: 15, color: "#a8c4e0", marginBottom: 3 }}>Enterprise Architect → IAM Analyst / Engineer</div>
+              <div style={{ fontSize: 12, color: "#7aaddb" }}>Active Secret Clearance · DoD Background · 18-Week Sprint · Okta Grant Active</div>
             </div>
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "flex-start" }}>
-              {[{ label: "Progress", value: pct(doneAll, totalAll) + "%", color: "#7aaddb", hi: true }, { label: "Weeks", value: "18" }, { label: "Hrs/Wk", value: "16.5" }, { label: "Certs", value: "4" }, { label: "Projects", value: "7" }, { label: "Cost", value: "$685" }].map(s => (
-                <div key={s.label} style={{ background: s.hi ? "rgba(46,116,181,0.25)" : "rgba(46,116,181,0.12)", border: `1px solid ${s.hi ? "#2E74B5" : "rgba(46,116,181,0.3)"}`, borderRadius: 8, padding: "9px 14px", textAlign: "center", minWidth: 68 }}>
-                  <div style={{ fontSize: 20, fontWeight: "bold", color: s.color || "#7aaddb", lineHeight: 1 }}>{s.value}</div>
+              {[
+                { label: "Progress", value: pct(doneAll, totalAll) + "%", color: "#7aaddb", hi: true },
+                { label: "Weeks", value: "18" },
+                { label: "Certs", value: "6" },
+                { label: "Projects", value: "8" },
+                { label: "Okta Deadline", value: "May 10", color: "#e8927a", hi: true },
+              ].map(s => (
+                <div key={s.label} style={{ background: s.hi ? "rgba(46,116,181,0.25)" : "rgba(46,116,181,0.12)", border: `1px solid ${s.hi ? (s.color || "#2E74B5") : "rgba(46,116,181,0.3)"}`, borderRadius: 8, padding: "9px 14px", textAlign: "center", minWidth: 78 }}>
+                  <div style={{ fontSize: s.label === "Okta Deadline" ? 14 : 20, fontWeight: "bold", color: s.color || "#7aaddb", lineHeight: 1 }}>{s.value}</div>
                   <div style={{ fontSize: 9, color: "#8aabb8", marginTop: 3, letterSpacing: "0.1em", textTransform: "uppercase" }}>{s.label}</div>
                 </div>
               ))}
             </div>
+          </div>
+          <div style={{ background: "rgba(180,60,40,0.12)", border: "1px solid rgba(200,80,60,0.4)", borderRadius: 8, padding: "10px 16px", marginBottom: 14, display: "flex", alignItems: "center", gap: 12 }}>
+            <div style={{ fontSize: 18 }}>⚠️</div>
+            <div style={{ fontSize: 13, color: "#e8927a" }}><strong>Okta Grant Deadline:</strong> Okta Professional exam must be sat by <strong>May 10, 2026</strong>. That is 60 days from March 11. Begin Okta learning paths today.</div>
           </div>
           <div>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
@@ -228,7 +463,7 @@ export default function RoadmapApp() {
               <div style={{ fontSize: 11, color: "#7aaddb" }}>{doneAll} of {totalAll} items complete</div>
             </div>
             <div style={{ height: 5, background: "rgba(255,255,255,0.08)", borderRadius: 3, overflow: "hidden" }}>
-              <div style={{ height: "100%", width: `${pct(doneAll, totalAll)}%`, background: "linear-gradient(90deg, #2E74B5, #1E6B3C)", borderRadius: 3, transition: "width 0.6s ease" }} />
+              <div style={{ height: "100%", width: `${pct(doneAll, totalAll)}%`, background: "linear-gradient(90deg, #2E74B5, #0D6B74, #1E6B3C, #7B5800)", borderRadius: 3, transition: "width 0.6s ease" }} />
             </div>
           </div>
         </div>
@@ -249,13 +484,17 @@ export default function RoadmapApp() {
         {/* ROADMAP */}
         {activeTab === "roadmap" && (
           <div>
-            <div style={{ fontSize: 11, color: "#5a7a99", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 22 }}>18-Week Sprint — Click a Phase to Expand + Check Off Items</div>
+            <div style={{ fontSize: 11, color: "#5a7a99", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 22 }}>5 Phases · 18 Weeks · 6 Credentials · 8 Projects · Click Any Phase to Expand</div>
             <div style={{ marginBottom: 28 }}>
               <div style={{ display: "flex", height: 7, borderRadius: 4, overflow: "hidden", marginBottom: 7 }}>
-                {[["#2E74B5",4],["#1E6B3C",5],["#7B5800",5],["#4B2D8A",4]].map(([c,f],i) => <div key={i} style={{ flex: f, background: c, marginRight: i<3?2:0 }} />)}
+                {[["#2E74B5",2],["#0D6B74",5],["#1E6B3C",4],["#7B5800",5],["#4B2D8A",2]].map(([c,f],i) => (
+                  <div key={i} style={{ flex: f, background: c, marginRight: i < 4 ? 2 : 0 }} />
+                ))}
               </div>
               <div style={{ display: "flex" }}>
-                {[["Wk 1–4 · Month 1",4],["Wk 5–9 · Month 2",5],["Wk 10–14 · Month 3",5],["Wk 15–18 · Month 4",4]].map(([l,f],i) => <div key={i} style={{ flex: f, fontSize: 10, color: "#5a7a99" }}>{l}</div>)}
+                {[["Wk 1–2",2],["Wk 3–7 · May 10 ⚠️",5],["Wk 8–11",4],["Wk 12–16",5],["Wk 17–18",2]].map(([l,f],i) => (
+                  <div key={i} style={{ flex: f, fontSize: 10, color: i === 1 ? "#e8927a" : "#5a7a99" }}>{l}</div>
+                ))}
               </div>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -264,12 +503,13 @@ export default function RoadmapApp() {
                 return (
                   <div key={phase.id} style={{ background: "rgba(15,30,60,0.6)", border: `1px solid rgba(${rgb(phase.color)},0.4)`, borderLeft: `4px solid ${phase.color}`, borderRadius: 10, overflow: "hidden" }}>
                     <div onClick={() => setExpandedPhase(expandedPhase === phase.id ? null : phase.id)} style={{ padding: "15px 22px", display: "flex", alignItems: "center", justifyContent: "space-between", cursor: "pointer", background: expandedPhase === phase.id ? `rgba(${rgb(phase.color)},0.15)` : "transparent" }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
                         <div style={{ background: phase.color, color: "#fff", fontWeight: "bold", fontSize: 10, letterSpacing: "0.15em", padding: "3px 9px", borderRadius: 4 }}>{phase.label}</div>
                         <div>
                           <div style={{ fontSize: 14, color: "#e8edf5" }}>{phase.title}</div>
                           <div style={{ fontSize: 11, color: "#5a7a99" }}>{phase.weeks} · {phase.month}</div>
                         </div>
+                        {phase.deadline && <div style={{ fontSize: 11, color: "#e8927a", background: "rgba(180,60,40,0.15)", border: "1px solid rgba(200,80,60,0.4)", borderRadius: 4, padding: "2px 8px" }}>{phase.deadline}</div>}
                       </div>
                       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                         <div style={{ fontSize: 12, color: phase.color }}>{prog.done}/{prog.total} · {prog.pct}%</div>
@@ -289,8 +529,10 @@ export default function RoadmapApp() {
                           <div>
                             <div style={{ fontSize: 10, letterSpacing: "0.2em", color: "#5a7a99", textTransform: "uppercase", marginBottom: 9 }}>Certifications</div>
                             {phase.certs.map((c, i) => <Checkbox key={i} checked={!!checked[`cert_${phase.id}_${i}`]} onChange={() => toggle(`cert_${phase.id}_${i}`)} label={c} color={phase.color} />)}
-                            <div style={{ marginTop: 12, fontSize: 10, letterSpacing: "0.2em", color: "#5a7a99", textTransform: "uppercase", marginBottom: 7 }}>Awareness</div>
-                            {phase.awareness.map((a, i) => <div key={i} style={{ display: "flex", gap: 7, marginBottom: 5 }}><div style={{ width: 5, height: 5, borderRadius: "50%", background: "#0D6B74", marginTop: 7, flexShrink: 0 }} /><div style={{ fontSize: 12, color: "#7abfbf" }}>{a}</div></div>)}
+                            {phase.awareness.length > 0 && <>
+                              <div style={{ marginTop: 12, fontSize: 10, letterSpacing: "0.2em", color: "#5a7a99", textTransform: "uppercase", marginBottom: 7 }}>Awareness</div>
+                              {phase.awareness.map((a, i) => <div key={i} style={{ display: "flex", gap: 7, marginBottom: 5 }}><div style={{ width: 5, height: 5, borderRadius: "50%", background: "#0D6B74", marginTop: 7, flexShrink: 0 }} /><div style={{ fontSize: 12, color: "#7abfbf" }}>{a}</div></div>)}
+                            </>}
                           </div>
                           <div>
                             <div style={{ fontSize: 10, letterSpacing: "0.2em", color: "#5a7a99", textTransform: "uppercase", marginBottom: 9 }}>Projects</div>
@@ -316,21 +558,27 @@ export default function RoadmapApp() {
         {/* PROGRESS */}
         {activeTab === "progress" && (
           <div>
-            <div style={{ fontSize: 11, color: "#5a7a99", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 26 }}>Your Progress — Saved Automatically to This Device</div>
-            <div style={{ display: "flex", gap: 28, marginBottom: 36, flexWrap: "wrap", justifyContent: "center" }}>
+            <div style={{ fontSize: 11, color: "#5a7a99", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 20 }}>Your Progress — Saved Automatically</div>
+            <div style={{ background: "rgba(180,60,40,0.12)", border: "1px solid rgba(200,80,60,0.4)", borderRadius: 8, padding: "10px 16px", marginBottom: 22, display: "flex", gap: 10, alignItems: "center" }}>
+              <div style={{ fontSize: 16 }}>⚠️</div>
+              <div style={{ fontSize: 12, color: "#e8927a" }}>Okta Professional hard deadline: <strong>May 10, 2026</strong>. Begin Okta learning paths today if you have not already.</div>
+            </div>
+            <div style={{ display: "flex", gap: 24, marginBottom: 32, flexWrap: "wrap", justifyContent: "center" }}>
               <ProgressRing percent={pct(doneAll, totalAll)} color="#7aaddb" size={110} label="Overall" />
               <ProgressRing percent={pct(doneCerts, totalCerts)} color="#2E74B5" size={110} label={`Certs ${doneCerts}/${totalCerts}`} />
-              <ProgressRing percent={pct(doneProjects, totalProjects)} color="#1E6B3C" size={110} label={`Projects ${doneProjects}/${totalProjects}`} />
-              <ProgressRing percent={pct(doneMilestones, totalMilestones)} color="#7B5800" size={110} label={`Milestones ${doneMilestones}/${totalMilestones}`} />
+              <ProgressRing percent={pct(doneProjects, totalProjects)} color="#1E6B3C" size={110} label={`Phase Items ${doneProjects}/${totalProjects}`} />
+              <ProgressRing percent={pct(doneProj8, allProjects.length)} color="#7B5800" size={110} label={`Projects ${doneProj8}/${allProjects.length}`} />
+              <ProgressRing percent={pct(doneMilestones, totalMilestones)} color="#0D6B74" size={110} label={`Milestones ${doneMilestones}/${totalMilestones}`} />
             </div>
             {phases.map(phase => {
               const prog = phaseProgress(phase.id);
               return (
-                <div key={phase.id} style={{ background: "rgba(15,30,60,0.6)", border: `1px solid rgba(${rgb(phase.color)},0.3)`, borderLeft: `4px solid ${phase.color}`, borderRadius: 10, marginBottom: 14, overflow: "hidden" }}>
+                <div key={phase.id} style={{ background: "rgba(15,30,60,0.6)", border: `1px solid rgba(${rgb(phase.color)},0.3)`, borderLeft: `4px solid ${phase.color}`, borderRadius: 10, marginBottom: 12, overflow: "hidden" }}>
                   <div style={{ padding: "13px 22px", display: "flex", alignItems: "center", justifyContent: "space-between", background: `rgba(${rgb(phase.color)},0.1)` }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                      <div style={{ background: phase.color, color: "#fff", fontWeight: "bold", fontSize: 10, letterSpacing: "0.12em", padding: "3px 9px", borderRadius: 4 }}>{phase.label}</div>
-                      <div style={{ fontSize: 13, color: "#e8edf5" }}>{phase.title} · {phase.weeks}</div>
+                      <div style={{ background: phase.color, color: "#fff", fontWeight: "bold", fontSize: 10, padding: "3px 9px", borderRadius: 4 }}>{phase.label}</div>
+                      <div style={{ fontSize: 13, color: "#e8edf5" }}>{phase.title}</div>
+                      {phase.deadline && <div style={{ fontSize: 10, color: "#e8927a" }}>⚠️ May 10</div>}
                     </div>
                     <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                       <div style={{ fontSize: 12, color: phase.color }}>{prog.done}/{prog.total}</div>
@@ -363,26 +611,113 @@ export default function RoadmapApp() {
           </div>
         )}
 
+        {/* PROJECTS */}
+        {activeTab === "projects" && (
+          <div>
+            <div style={{ fontSize: 11, color: "#5a7a99", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 26 }}>8 Portfolio Projects — Real IAM Analyst + Engineer Work · Check Off When Complete</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              {allProjects.map(p => {
+                const doneKey = `pj_done_${p.num}`;
+                const isDone = !!checked[doneKey];
+                return (
+                  <div key={p.num} style={{ background: "rgba(15,30,60,0.6)", border: `1px solid rgba(${rgb(p.color)},${isDone ? "0.7" : "0.35"})`, borderLeft: `4px solid ${p.color}`, borderRadius: 10, padding: "18px 22px", transition: "all 0.3s" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                        <div style={{ fontSize: 26, fontWeight: "bold", color: p.color, opacity: 0.35, lineHeight: 1, minWidth: 38 }}>{p.num}</div>
+                        <div>
+                          <div style={{ fontSize: 15, color: isDone ? "#5aad7a" : "#e8edf5", marginBottom: 3 }}>{isDone ? "✓ " : ""}{p.name}</div>
+                          <div style={{ fontSize: 11, color: p.color }}>📱 {p.platform} · {p.weeks}</div>
+                        </div>
+                      </div>
+                      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                        <span style={{ background: `rgba(${rgb(p.color)},0.15)`, border: `1px solid ${p.color}`, borderRadius: 10, padding: "2px 9px", fontSize: 9, color: p.color, textTransform: "uppercase" }}>Phase {p.num === "AD" ? "4" : p.phase}</span>
+                        <div onClick={() => toggle(doneKey)} style={{ cursor: "pointer", width: 28, height: 28, borderRadius: 6, border: `2px solid ${isDone ? "#5aad7a" : "#3a5a72"}`, background: isDone ? "rgba(30,107,60,0.3)" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s", flexShrink: 0 }}>
+                          {isDone && <div style={{ color: "#5aad7a", fontSize: 14, fontWeight: "bold" }}>✓</div>}
+                        </div>
+                      </div>
+                    </div>
+                    <div style={{ fontSize: 12, color: "#7a9ab8", lineHeight: 1.8, marginBottom: 12 }}>{p.desc}</div>
+                    <div style={{ fontSize: 11, color: "#4a6a80", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 10 }}>{p.skills}</div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* CERTS */}
+        {activeTab === "certs" && (
+          <div>
+            <div style={{ fontSize: 11, color: "#5a7a99", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 22 }}>6 Credentials — Okta + Microsoft + CompTIA + CyberArk</div>
+            <div style={{ background: "rgba(180,60,40,0.12)", border: "1px solid rgba(200,80,60,0.4)", borderRadius: 8, padding: "10px 16px", marginBottom: 20, display: "flex", gap: 10, alignItems: "center" }}>
+              <div style={{ fontSize: 16 }}>⚠️</div>
+              <div style={{ fontSize: 12, color: "#e8927a" }}>Okta Professional must be sat by <strong>May 10, 2026</strong>. Begin learning paths today.</div>
+            </div>
+            <div style={{ marginBottom: 28, padding: "16px 0", position: "relative" }}>
+              <div style={{ position: "absolute", top: "50%", left: 0, right: 0, height: 2, background: "rgba(46,116,181,0.2)", transform: "translateY(-50%)" }} />
+              <div style={{ display: "flex", justifyContent: "space-between", position: "relative", flexWrap: "wrap", gap: 8 }}>
+                {[["ISC2 CC","Wk 2","Free","#2E74B5"],["Okta Pro","Wk 7","Free*","#0D6B74"],["Security+","Wk 10–11","$370","#1E6B3C"],["Okta Admin","Wk 14–15","Free*","#7B5800"],["CyberArk","Wk 15","Free*","#7B5800"],["SC-300","Wk 16","$165","#4B2D8A"]].map(([name,week,cost,color],i) => (
+                  <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 7, flex: 1, minWidth: 90 }}>
+                    <div style={{ fontSize: 9, color: i === 1 ? "#e8927a" : "#5a7a99", textAlign: "center" }}>{week}</div>
+                    <div style={{ width: 11, height: 11, borderRadius: "50%", background: color, border: "3px solid #0a0f1e", boxShadow: `0 0 9px ${color}`, zIndex: 1 }} />
+                    <div style={{ background: "rgba(15,30,60,0.9)", border: `1px solid ${color}`, borderRadius: 5, padding: "5px 7px", textAlign: "center", maxWidth: 110 }}>
+                      <div style={{ fontSize: 10, color: "#e8edf5", marginBottom: 2 }}>{name}</div>
+                      <div style={{ fontSize: 10, color: cost.includes("Free") ? "#5aad7a" : "#7aaddb", fontWeight: "bold" }}>{cost}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {[
+                { name: "ISC2 Certified in Cybersecurity (CC)", week: "Weeks 1–2", cost: "Free", color: "#2E74B5", study: "https://www.isc2.org/Certifications/CC", exam: "https://www.isc2.org/Certifications/CC", why: "Register Day 1. Free 15-hour self-paced course and free exam. Your ISC2 background in access controls and security operations maps directly to the CC domains. Knock it out in under 2 weeks.", type: "Certification" },
+                { name: "Okta Professional", week: "By May 10 — Hard Deadline", cost: "Free (Grant Voucher)", color: "#0D6B74", study: "https://training.okta.com", exam: "https://www.webassessor.com/okta", why: "Your Okta grant gives you a free Professional voucher if you sit within 60 days of March 11. Complete the Fundamentals and Administration learning paths, practice in your org, score 75%+ on the practice assessment, then book and sit by May 10.", type: "Certification" },
+                { name: "CompTIA Security+", week: "Weeks 3–11 — Exam Week 10 or 11", cost: "$370", color: "#1E6B3C", study: "https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-comptia-security-plus-course/", exam: "https://www.pearsonvue.com/us/en/comptia.html", why: "DoD 8570 gateway — required for almost every federal cybersecurity role. Start study Week 3. Book exam when scoring 80%+ on three consecutive Jason Dion practice exams.", type: "Certification" },
+                { name: "Okta Administrator", week: "Weeks 8–14 — Exam Week 14 or 15", cost: "Free (Second Grant Voucher)", color: "#7B5800", study: "https://training.okta.com", exam: "https://www.webassessor.com/okta", why: "Once Okta Professional passes your grant resets — 90 days of free Admin learning path access and a second free voucher. Activate Week 8, study alongside Security+, sit the exam Week 14 or 15 at a Pearson VUE center.", type: "Certification" },
+                { name: "CyberArk Trustee + PAM Demo Certified", week: "Week 15 — Saturday block", cost: "Free* (Pearson VUE in-person)", color: "#7B5800", study: "https://training.cyberark.com", exam: "https://www.cyberark.com/why-cyberark/education-and-training/", why: "Two free CyberArk credentials covering PAM concepts and hands-on product walkthrough. Note: as of Nov 2025 all CyberArk exams require in-person Pearson VUE testing. Book a test center in advance. Verify PAM Demo Certified is a verifiable credential at training.cyberark.com before scheduling.", type: "Awareness Cert" },
+                { name: "MS SC-300 — Identity and Access Administrator", week: "Weeks 12–16 — Exam Week 16", cost: "$165", color: "#4B2D8A", study: "https://learn.microsoft.com/en-us/credentials/certifications/identity-and-access-administrator/", exam: "https://www.pearsonvue.com/us/en/microsoft.html", why: "The most directly relevant cert for IAM Analyst and Engineer roles. By Week 12 your Entra ID projects will have already covered most of the exam content. Use MeasureUp practice tests in the final two weeks.", type: "Certification" },
+              ].map((cert, i) => (
+                <div key={i} style={{ background: "rgba(15,30,60,0.6)", border: "1px solid rgba(255,255,255,0.07)", borderLeft: `4px solid ${cert.color}`, borderRadius: 8, padding: "14px 18px", display: "flex", gap: 18, flexWrap: "wrap" }}>
+                  <div style={{ minWidth: 90, textAlign: "center" }}>
+                    <div style={{ fontSize: 10, color: cert.color, fontWeight: "bold", marginBottom: 3 }}>{cert.week.split("—")[0].trim()}</div>
+                    <div style={{ fontSize: 12, color: cert.cost.includes("Free") ? "#5aad7a" : "#7aaddb", fontWeight: "bold", marginBottom: 5 }}>{cert.cost}</div>
+                    <div style={{ fontSize: 8, letterSpacing: "0.1em", textTransform: "uppercase", color: "#3a5a72", border: `1px solid ${cert.color}`, borderRadius: 3, padding: "2px 4px" }}>{cert.type}</div>
+                  </div>
+                  <div style={{ flex: 1, minWidth: 180 }}>
+                    <div style={{ fontSize: 13, color: "#e8edf5", marginBottom: 4 }}>{cert.name}</div>
+                    {cert.week.includes("Hard Deadline") && <div style={{ fontSize: 11, color: "#e8927a", marginBottom: 6 }}>⚠️ May 10, 2026 hard deadline</div>}
+                    <div style={{ fontSize: 12, color: "#6a8aa8", lineHeight: 1.7, marginBottom: 10 }}>{cert.why}</div>
+                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                      <LinkBtn url={cert.study} label="Study Materials" />
+                      <LinkBtn url={cert.exam} label="Register / Book Exam" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* RESOURCES */}
         {activeTab === "resources" && (
           <div>
-            <div style={{ fontSize: 11, color: "#5a7a99", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 26 }}>All Resources & Links — Click Any Link to Open in a New Tab</div>
+            <div style={{ fontSize: 11, color: "#5a7a99", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 26 }}>All Resources & Links — Click Any Link to Open</div>
             {resources.map((section, si) => (
-              <div key={si} style={{ marginBottom: 32 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
+              <div key={si} style={{ marginBottom: 30 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
                   <div style={{ width: 4, height: 18, background: section.color, borderRadius: 2 }} />
                   <div style={{ fontSize: 14, color: "#e8edf5" }}>{section.category}</div>
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   {section.items.map((item, ii) => (
-                    <div key={ii} style={{ background: "rgba(15,30,60,0.6)", border: "1px solid rgba(255,255,255,0.06)", borderLeft: `3px solid ${section.color}`, borderRadius: 8, padding: "13px 16px", display: "flex", alignItems: "flex-start", gap: 14, flexWrap: "wrap" }}>
+                    <div key={ii} style={{ background: "rgba(15,30,60,0.6)", border: "1px solid rgba(255,255,255,0.06)", borderLeft: `3px solid ${section.color}`, borderRadius: 8, padding: "12px 16px", display: "flex", alignItems: "flex-start", gap: 14, flexWrap: "wrap" }}>
                       <div style={{ flex: 1, minWidth: 180 }}>
                         <div style={{ fontSize: 13, color: "#e8edf5", marginBottom: 4 }}>{item.name}</div>
                         <div style={{ fontSize: 12, color: "#6a8aa8", lineHeight: 1.6, marginBottom: 10 }}>{item.desc}</div>
                         <LinkBtn url={item.url} label="Open Resource" />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 5, minWidth: 110 }}>
-                        <div style={{ fontSize: 12, color: item.cost === "Free" || item.cost === "Free*" ? "#5aad7a" : "#7aaddb", fontWeight: "bold" }}>{item.cost}</div>
+                        <div style={{ fontSize: 12, color: item.cost.includes("Free") ? "#5aad7a" : "#7aaddb", fontWeight: "bold" }}>{item.cost}</div>
                         <div style={{ fontSize: 9, color: section.color, border: `1px solid ${section.color}`, borderRadius: 10, padding: "2px 7px", letterSpacing: "0.06em", textTransform: "uppercase" }}>{typeLabels[item.type]}</div>
                         <div style={{ fontSize: 10, color: "#3a5a72" }}>{item.phase}</div>
                       </div>
@@ -394,89 +729,22 @@ export default function RoadmapApp() {
           </div>
         )}
 
-        {/* PROJECTS */}
-        {activeTab === "projects" && (
-          <div>
-            <div style={{ fontSize: 11, color: "#5a7a99", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 26 }}>7 Portfolio Projects — Hands-On Work Across All Tools</div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-              {allProjects.map(p => (
-                <div key={p.num} style={{ background: "rgba(15,30,60,0.6)", border: `1px solid rgba(${rgb(p.color)},0.35)`, borderTop: `3px solid ${p.color}`, borderRadius: 10, padding: "18px" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 9 }}>
-                    <div style={{ fontSize: 24, fontWeight: "bold", color: p.color, opacity: 0.4, lineHeight: 1 }}>{p.num}</div>
-                    <span style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 4, padding: "2px 7px", fontSize: 10, color: "#5a7a99" }}>{p.weeks}</span>
-                  </div>
-                  <div style={{ fontSize: 14, color: "#e8edf5", marginBottom: 5 }}>{p.name}</div>
-                  <div style={{ fontSize: 11, color: p.color, marginBottom: 9 }}>📱 {p.platform}</div>
-                  <div style={{ fontSize: 11, color: "#5a8aa0", lineHeight: 1.6 }}>{p.skills}</div>
-                  <div style={{ marginTop: 10 }}>
-                    <span style={{ background: `rgba(${rgb(p.color)},0.18)`, border: `1px solid ${p.color}`, borderRadius: 10, padding: "2px 9px", fontSize: 9, color: p.color, textTransform: "uppercase" }}>Phase {p.num === "AD" ? "2 / Bonus" : p.phase}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* CERTS */}
-        {activeTab === "certs" && (
-          <div>
-            <div style={{ fontSize: 11, color: "#5a7a99", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 26 }}>Full Credential Stack — $685 Total · All Study Materials Free</div>
-            <div style={{ marginBottom: 32, padding: "18px 0", position: "relative" }}>
-              <div style={{ position: "absolute", top: "50%", left: 0, right: 0, height: 2, background: "rgba(46,116,181,0.2)", transform: "translateY(-50%)" }} />
-              <div style={{ display: "flex", justifyContent: "space-between", position: "relative" }}>
-                {[["ISC2 CC","Wk 2","Free","#2E74B5"],["Security+","Wk 7–8","$370","#1E6B3C"],["AZ-900","Wk 10","Free","#7B5800"],["SailPoint","Wk 10","Free","#7B5800"],["SC-300","Wk 15–16","$165","#4B2D8A"],["Okta Pro","Wk 17","$150","#4B2D8A"],["CyberArk","Wk 17","Free","#4B2D8A"]].map(([name,week,cost,color],i) => (
-                  <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 7, flex: 1 }}>
-                    <div style={{ fontSize: 9, color: "#5a7a99" }}>{week}</div>
-                    <div style={{ width: 11, height: 11, borderRadius: "50%", background: color, border: "3px solid #0a0f1e", boxShadow: `0 0 9px ${color}`, zIndex: 1 }} />
-                    <div style={{ background: "rgba(15,30,60,0.9)", border: `1px solid ${color}`, borderRadius: 5, padding: "5px 7px", textAlign: "center", maxWidth: 105 }}>
-                      <div style={{ fontSize: 10, color: "#e8edf5", marginBottom: 2 }}>{name}</div>
-                      <div style={{ fontSize: 10, color: cost === "Free" ? "#5aad7a" : "#7aaddb", fontWeight: "bold" }}>{cost}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {[
-                { name: "ISC2 Certified in Cybersecurity (CC)", week: "Week 2", cost: "Free", color: "#2E74B5", url: "https://www.isc2.org/Certifications/CC", study: "https://www.isc2.org/Certifications/CC", why: "Quick win — free course and free exam. Register Day 1. Study alongside Security+ in Weeks 1–2.", type: "Certification" },
-                { name: "CompTIA Security+", week: "Week 7–8", cost: "$370", color: "#1E6B3C", url: "https://www.pearsonvue.com/us/en/comptia.html", study: "https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-comptia-security-plus-course/", why: "DoD 8570 gateway — required for almost every federal cybersecurity role. The most important cert in this plan. Triggers soft launch of applications.", type: "Certification" },
-                { name: "AZ-900 (Study Material Only — No Exam)", week: "Week 10", cost: "Free", color: "#7B5800", url: "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/", study: "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/", why: "Azure orientation before SC-300. Complete the free Microsoft Learn path. No exam booking needed.", type: "Study Only" },
-                { name: "SailPoint Identity Security Fundamentals", week: "Week 10", cost: "Free", color: "#0D6B74", url: "https://university.sailpoint.com", study: "https://university.sailpoint.com", why: "Entry-level awareness of the dominant federal IGA platform. 3–4 hours. Enough for interviews.", type: "Awareness" },
-                { name: "MS SC-300 — Identity and Access Administrator", week: "Week 15–16", cost: "$165", color: "#4B2D8A", url: "https://www.pearsonvue.com/us/en/microsoft.html", study: "https://learn.microsoft.com/en-us/credentials/certifications/identity-and-access-administrator/", why: "The most directly relevant certification for IAM Analyst roles. Certifies everything you built in your Entra ID projects.", type: "Certification" },
-                { name: "Okta Certified Professional", week: "Week 17", cost: "$150", color: "#4B2D8A", url: "https://www.webassessor.com/okta", study: "https://training.okta.com", why: "Platform breadth — shows you are not a single-vendor candidate. Project 6 lab work is your exam prep.", type: "Certification" },
-                { name: "CyberArk Trustee", week: "Week 17", cost: "Free", color: "#4B2D8A", url: "https://www.cyberark.com/why-cyberark/education-and-training/", study: "https://www.cyberark.com/why-cyberark/education-and-training/", why: "PAM awareness — 2 to 3 hours total. Enough to speak to privileged access management in interviews.", type: "Awareness" },
-              ].map((cert, i) => (
-                <div key={i} style={{ background: "rgba(15,30,60,0.6)", border: "1px solid rgba(255,255,255,0.07)", borderLeft: `4px solid ${cert.color}`, borderRadius: 8, padding: "14px 18px", display: "flex", gap: 18, flexWrap: "wrap" }}>
-                  <div style={{ minWidth: 85, textAlign: "center" }}>
-                    <div style={{ fontSize: 11, color: cert.color, fontWeight: "bold", marginBottom: 3 }}>{cert.week}</div>
-                    <div style={{ fontSize: 14, color: cert.cost === "Free" ? "#5aad7a" : "#7aaddb", fontWeight: "bold", marginBottom: 5 }}>{cert.cost}</div>
-                    <div style={{ fontSize: 8, letterSpacing: "0.1em", textTransform: "uppercase", color: "#3a5a72", border: `1px solid ${cert.color}`, borderRadius: 3, padding: "2px 4px" }}>{cert.type}</div>
-                  </div>
-                  <div style={{ flex: 1, minWidth: 180 }}>
-                    <div style={{ fontSize: 13, color: "#e8edf5", marginBottom: 4 }}>{cert.name}</div>
-                    <div style={{ fontSize: 12, color: "#6a8aa8", lineHeight: 1.6, marginBottom: 10 }}>{cert.why}</div>
-                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                      <LinkBtn url={cert.study} label="Study Materials" />
-                      <LinkBtn url={cert.url} label="Register / Book Exam" />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* SCHEDULE */}
         {activeTab === "schedule" && (
           <div>
             <div style={{ fontSize: 11, color: "#5a7a99", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 26 }}>Weekly Study Routine — 16.5 Hours Per Week</div>
-            <div style={{ display: "flex", gap: 10, marginBottom: 24, flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap" }}>
               {[["Cert Study","~7.5 hrs","#2E74B5"],["Projects","~9 hrs","#1E6B3C"],["Total / Week","~16.5 hrs","#4B2D8A"],["Total / 18 Weeks","~297 hrs","#7B5800"]].map(([l,v,c]) => (
                 <div key={l} style={{ background: "rgba(15,30,60,0.6)", border: "1px solid rgba(255,255,255,0.07)", borderTop: `3px solid ${c}`, borderRadius: 8, padding: "12px 18px", flex: 1, minWidth: 110 }}>
                   <div style={{ fontSize: 20, color: c, marginBottom: 3 }}>{v}</div>
                   <div style={{ fontSize: 10, color: "#5a7a99", letterSpacing: "0.1em", textTransform: "uppercase" }}>{l}</div>
                 </div>
               ))}
+            </div>
+            <div style={{ background: "rgba(13,107,116,0.12)", border: "1px solid rgba(13,107,116,0.4)", borderLeft: "4px solid #0D6B74", borderRadius: 8, padding: "12px 16px", marginBottom: 14 }}>
+              <div style={{ fontSize: 12, color: "#7abfbf", lineHeight: 1.7 }}>
+                <strong>Weeks 1–7:</strong> Wednesday lab days and Sunday blocks are shared between Okta learning paths and project work. Okta paths take priority to meet the May 10 deadline. Project work shifts to evenings once Okta Professional passes.
+              </div>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
               {weeklySchedule.map((day, i) => (
@@ -499,8 +767,8 @@ export default function RoadmapApp() {
                 </div>
               ))}
             </div>
-            <div style={{ marginTop: 16, background: "rgba(123,88,0,0.12)", border: "1px solid rgba(123,88,0,0.3)", borderLeft: "4px solid #7B5800", borderRadius: 8, padding: "13px 16px" }}>
-              <div style={{ fontSize: 12, color: "#c4a060", lineHeight: 1.7, fontStyle: "italic" }}>Saturday rule: Do the 90-minute practice exam in the morning, take a real break of at least 60 minutes, then sit down for project work. Never blend them — fatigue will hurt both. This structure is what makes the schedule sustainable for 18 weeks.</div>
+            <div style={{ marginTop: 14, background: "rgba(123,88,0,0.12)", border: "1px solid rgba(123,88,0,0.3)", borderLeft: "4px solid #7B5800", borderRadius: 8, padding: "12px 16px" }}>
+              <div style={{ fontSize: 12, color: "#c4a060", lineHeight: 1.7, fontStyle: "italic" }}>Saturday rule: Do the 90-minute practice exam in the morning, take a real break of at least 60 minutes, then sit down for project work. Never blend them. This is what makes 18 weeks sustainable.</div>
             </div>
           </div>
         )}
@@ -511,9 +779,9 @@ export default function RoadmapApp() {
             <div style={{ fontSize: 11, color: "#5a7a99", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 26 }}>Application Strategy — 3 Launch Windows</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               {[
-                { week: "WEEK 8", label: "Soft Launch", color: "#1E6B3C", trigger: "Security+ passed", desc: "The moment Security+ is in hand you are qualified for a significant portion of entry-level IAM Analyst postings. Your clearance plus Security+ plus your DoD background is already a competitive package.", actions: ["Apply to roles where Security+ satisfies the cert requirement","List SC-300 and Okta as 'In Progress — Expected [Month]'","Primary board: ClearanceJobs.com — search IAM Analyst, ISSO, Access Control Analyst","Target: Leidos, SAIC, Booz Allen, CACI, ManTech, Perspecta, GDIT, Noblis","Leverage network first — Seneca, Deloitte, AIS contacts move 3–4x faster than cold apps"], links: [["ClearanceJobs.com","https://www.clearancejobs.com"],["LinkedIn Jobs","https://www.linkedin.com/jobs"]] },
-                { week: "WEEK 12", label: "Full Launch", color: "#2E74B5", trigger: "SC-300 in progress + 4 projects complete", desc: "Security+ passed, four completed projects, AD TryHackMe done, SC-300 in progress. You now have real work to reference by name in every interview.", actions: ["Reference projects by name — specific, real, documented work","Expand to LinkedIn Jobs and USAJobs beyond ClearanceJobs","Target 10–15 active applications total","Begin interview prep — frame DSCA audit work as applied IAM experience","Add IAM-specific language to resume based on active postings you see"], links: [["ClearanceJobs.com","https://www.clearancejobs.com"],["USAJobs.gov","https://www.usajobs.gov"],["LinkedIn Jobs","https://www.linkedin.com/jobs"]] },
-                { week: "WEEK 16", label: "Power Position", color: "#4B2D8A", trigger: "SC-300 passed · Okta nearly done · Portfolio complete", desc: "SC-300 passed, Okta in final stretch, portfolio assembled. The full credential stack plus clearance plus portfolio together are rare at entry level. This is your strongest window.", actions: ["Update every active application the day SC-300 posts to your transcript","Negotiate pending offers from position of additional credential strength","Apply broadly and aggressively — this is the power window","Portfolio PDF ready to attach to every single application","Target salary: $90k–$115k entry, negotiate toward $110k–$120k with portfolio"], links: [["ClearanceJobs.com","https://www.clearancejobs.com"],["USAJobs.gov","https://www.usajobs.gov"]] },
+                { week: "WEEK 7", label: "Soft Launch", color: "#0D6B74", trigger: "Okta Professional passed — by May 10", desc: "ISC2 CC + Okta Professional + Active Secret Clearance is a genuinely competitive entry package. Do not wait for Security+. Apply now on ClearanceJobs and list Security+ and SC-300 as In Progress.", actions: ["Apply immediately on ClearanceJobs.com — search IAM Analyst, Identity Analyst, ISSO","List Security+ as In Progress — Expected June 2026 and SC-300 as In Progress — Expected July 2026","Target: Leidos, SAIC, Booz Allen, CACI, ManTech, Perspecta, GDIT, Noblis","Contact Seneca, Deloitte, and AIS network first — referrals move 3–4x faster than cold applications","Frame DSCA audit work as applied IAM experience in every cover letter and interview"], links: [["ClearanceJobs.com","https://www.clearancejobs.com"],["LinkedIn Jobs","https://www.linkedin.com/jobs"]] },
+                { week: "WEEK 11", label: "Full Launch", color: "#1E6B3C", trigger: "Security+ passed — 3 projects complete", desc: "ISC2 CC + Okta Professional + Security+ + 3 portfolio projects + Active Secret Clearance. Apply aggressively on all three boards. You now have real work to reference by name in every interview.", actions: ["Security+ posted — update resume and LinkedIn the same day","Expand to LinkedIn Jobs and USAJobs in addition to ClearanceJobs","Target 10–15 active applications across all boards","Reference projects 1, 2, and 3 by name in interviews with specific outcomes","Frame DSCA audit work — process owners, access gaps, approval chains — as direct IAM experience"], links: [["ClearanceJobs.com","https://www.clearancejobs.com"],["USAJobs.gov","https://www.usajobs.gov"],["LinkedIn Jobs","https://www.linkedin.com/jobs"]] },
+                { week: "WEEK 16", label: "Power Position", color: "#4B2D8A", trigger: "SC-300 passed · All 6 credentials · 8 projects · Full portfolio", desc: "Six credentials including two Okta certs, Security+, SC-300, and CyberArk. Eight portfolio projects covering every core IAM technical domain. Active Secret Clearance. This combination at entry level is exceptionally rare.", actions: ["Update every active application the day SC-300 posts","Negotiate any pending offers from full credential and portfolio strength","Attach portfolio PDF to every application","GitHub repo with PowerShell scripts linked on resume and LinkedIn","Target salary: $90k–$115k entry, negotiate toward $110k–$120k with full stack","SailPoint IGA and CyberArk PAM awareness explicitly mentioned in bridge narrative"], links: [["ClearanceJobs.com","https://www.clearancejobs.com"],["USAJobs.gov","https://www.usajobs.gov"]] },
               ].map((w, i) => (
                 <div key={i} style={{ background: "rgba(15,30,60,0.6)", border: "1px solid rgba(255,255,255,0.07)", borderLeft: `4px solid ${w.color}`, borderRadius: 10, overflow: "hidden" }}>
                   <div style={{ padding: "13px 22px", background: `rgba(${rgb(w.color)},0.12)`, display: "flex", alignItems: "center", gap: 14 }}>
@@ -536,8 +804,8 @@ export default function RoadmapApp() {
             <div style={{ marginTop: 24 }}>
               <div style={{ fontSize: 11, color: "#5a7a99", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 12 }}>Realistic Offer Timeline</div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-                {[["Network Referral","2–4 weeks","Fastest — prioritize Seneca, Deloitte, AIS contacts","#1E6B3C"],["ClearanceJobs Cold Apply","4–6 weeks","Cleared candidates move faster — no background check delay","#2E74B5"],["LinkedIn / General Boards","4–8 weeks","Less targeted but worth running in parallel","#7B5800"],["USAJobs Federal Direct","6–12 weeks","Slowest but highest long-term compensation ceiling","#4B2D8A"]].map(([type,time,note,color],i) => (
-                  <div key={i} style={{ background: "rgba(15,30,60,0.6)", border: "1px solid rgba(255,255,255,0.05)", borderTop: `3px solid ${color}`, borderRadius: 8, padding: "13px 15px" }}>
+                {[["Network Referral","2–4 weeks","Seneca, Deloitte, AIS contacts first — fastest path","#1E6B3C"],["ClearanceJobs Cold Apply","4–6 weeks","Cleared candidates move faster — no background check delay","#2E74B5"],["LinkedIn / General Boards","4–8 weeks","Less targeted but worth running in parallel from Week 11","#7B5800"],["USAJobs Federal Direct","6–12 weeks","Slowest process but highest long-term compensation ceiling","#4B2D8A"]].map(([type,time,note,color]) => (
+                  <div key={type} style={{ background: "rgba(15,30,60,0.6)", border: "1px solid rgba(255,255,255,0.05)", borderTop: `3px solid ${color}`, borderRadius: 8, padding: "13px 15px" }}>
                     <div style={{ fontSize: 12, color: "#e8edf5", marginBottom: 3 }}>{type}</div>
                     <div style={{ fontSize: 19, color, marginBottom: 5 }}>{time}</div>
                     <div style={{ fontSize: 11, color: "#5a7a99", lineHeight: 1.5 }}>{note}</div>
@@ -550,7 +818,7 @@ export default function RoadmapApp() {
       </div>
 
       <div style={{ borderTop: "1px solid rgba(46,116,181,0.15)", padding: "16px 40px", textAlign: "center", fontSize: 10, color: "#3a5a72", letterSpacing: "0.1em" }}>
-        DESTINY BLACKMAN · IAM ANALYST SPRINT PLAN · 18 WEEKS · START TODAY
+        DESTINY BLACKMAN · IAM ANALYST / ENGINEER SPRINT PLAN · UPDATED MARCH 2026 · 18 WEEKS
       </div>
     </div>
   );
