@@ -153,7 +153,6 @@ const phases = [
       "Week 17: Project 5 portfolio page complete — gap assessment workbook, POA&M, access request intake, executive summary",
       "Week 17: Project 6 portfolio page complete — all 5 scripts documented, GitHub repo linked with README",
       "Week 17: Professional Bridge narrative written — 2 paragraphs connecting EA and DSCA audit work to IAM, mentions SailPoint and CyberArk awareness",
-      "Week 17: Message sent to 5 contacts at Seneca, Deloitte, or AIS — letting them know you are making a move",
       "Week 18: Portfolio formatted — cover page, table of contents, consistent layout across all 6 projects",
       "Week 18: Resume finalized — all credentials listed, IAM Admin/Analyst/Engineer skills, Microsoft Graph API called out",
       "Week 18: LinkedIn updated — all credentials added, About section rewritten with IAM focus across all three roles",
@@ -398,8 +397,8 @@ export default function RoadmapApp() {
             <div>
               <div style={{ fontSize: 11, letterSpacing: "0.3em", color: "#7aaddb", marginBottom: 8, textTransform: "uppercase" }}>Career Transition Roadmap — Updated March 2026</div>
               <h1 style={{ fontSize: 30, fontWeight: "normal", margin: "0 0 5px", color: "#fff" }}>Destiny Blackman</h1>
-              <div style={{ fontSize: 15, color: "#a8c4e0", marginBottom: 3 }}>Enterprise Architect → IAM Admin · Analyst · Engineer</div>
-              <div style={{ fontSize: 12, color: "#7aaddb" }}>Active Secret Clearance · DoD Background · 18-Week Sprint · Okta Grant Active</div>
+              <div style={{ fontSize: 15, color: "#a8c4e0", marginBottom: 3 }}>Enterprise Architect → IAM Professional</div>
+              <div style={{ fontSize: 12, color: "#7aaddb" }}>Clearanced · DoD Background · 18-Week Sprint · Okta Grant Active</div>
             </div>
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "flex-start" }}>
               {[
